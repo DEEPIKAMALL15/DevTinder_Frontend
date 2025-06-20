@@ -84,11 +84,12 @@ export default UserCard;
   
  */
 
-import React from "react";
+ import React from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
+import { toast } from "react-toastify";
 
 const UserCard = ({ user }) => {
   const dispatch = useDispatch();
@@ -102,6 +103,7 @@ const UserCard = ({ user }) => {
         { withCredentials: true }
       );
       console.log(res);
+      toast.success(`User ${status}`);
       dispatch(removeUserFromFeed(_id));
     } catch (err) {
       console.log(err);
@@ -157,3 +159,4 @@ const UserCard = ({ user }) => {
 
 export default UserCard;
 
+ 
